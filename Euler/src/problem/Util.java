@@ -11,7 +11,7 @@ public class Util {
 	// 判断是否为质数
 	public static boolean isFactor(long num) {
 		for (int i = 2; i * i <= num; i++) {
-			if (num % i != 0)
+			if (num % i== 0)
 				return false;
 			else
 				continue;

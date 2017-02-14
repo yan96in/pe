@@ -15,6 +15,7 @@ public class UtilTest {
 
 	@Test
 	public void isFactorTest() {
+		assertFalse(Util.isFactor(4));
 		assertTrue(Util.isFactor(29));
 		assertFalse(Util.isFactor(400));
 	}
