@@ -3,6 +3,8 @@
  */
 package problem;
 
+import javax.script.ScriptEngine;
+
 /**
  * @author yan96in
  */
@@ -10,15 +12,16 @@ package problem;
 public class P1 {
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();// System.nanoTime();纳秒
-		// System.out.println(p8());
-		p11();
+		System.out.println(p11());
+
 		long endTime = System.currentTimeMillis();// System.nanoTime();
 		System.out.println("运算时间用了" + (endTime - startTime) + "微秒");
 	}
 
-	private static void p11() {
-//		String s = " 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48";
-		//		Util.split(s);
+	private static int p11() {
+		// String s = " 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67
+		// 48";
+		// Util.splitToArray(s);
 		int[][] array = { { 8, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 8 }, // 0开头的数字在java里是八进制，所以08，09不合法
 				{ 49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 04, 56, 62, 0 },
 				{ 81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 03, 49, 13, 36, 65 },
@@ -39,6 +42,32 @@ public class P1 {
 				{ 20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67, 59, 85, 74, 04, 36, 16 },
 				{ 20, 73, 35, 29, 78, 31, 90, 01, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 05, 54 },
 				{ 01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48 } };
+		int product = 0;
+		for (int i = 0; i < 17; i++) {// 左上到右下的斜线
+			for (int j = 0; j < 17; j++) {
+				product = product > (array[i][j] * array[i + 1][j + 1] * array[i + 2][j + 2] * array[i + 3][j + 3])
+						? product : (array[i][j] * array[i + 1][j + 1] * array[i + 2][j + 2] * array[i + 3][j + 3]);
+			}
+		}
+		for (int i = 0; i < 17; i++) {
+			for (int j = 0; j < 20; j++) {// 从上到下
+				product = product > (array[i][j] * array[i + 1][j] * array[i + 2][j] * array[i + 3][j]) ? product
+						: (array[i][j] * array[i + 1][j] * array[i + 2][j] * array[i + 3][j]);
+			}
+		}
+		for (int i = 0; i < 20; i++) {// 从左到右
+			for (int j = 0; j < 17; j++) {
+				product = product > (array[i][j] * array[i][j + 1] * array[i][j + 2] * array[i][j + 3]) ? product
+						: (array[i][j] * array[i][j + 1] * array[i][j + 2] * array[i][j + 3]);
+			}
+		}
+		for (int i = 0; i < 17; i++) {// 从右上到左下的斜线，一开始忽略了
+			for (int j = 3; j < 20; j++) {
+				product = product > (array[i][j] * array[i + 1][j - 1] * array[i + 2][j - 2] * array[i + 3][j - 3])
+						? product : (array[i][j] * array[i + 1][j - 1] * array[i + 2][j - 2] * array[i + 3][j - 3]);
+			}
+		}
+		return product;
 	}
 
 	/*

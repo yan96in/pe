@@ -9,7 +9,7 @@ package problem;
  */
 public class Util {
 
-	public static void split(String s) {
+	public static void splitToArray(String s) {
 		String[] array = s.split(" ");
 		for (String st : array) {
 			System.out.print(st+",");
