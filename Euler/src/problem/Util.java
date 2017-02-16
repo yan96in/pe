@@ -3,16 +3,47 @@
  */
 package problem;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * @author yan96in
  *
  */
 public class Util {
+	// 读取文件，用于大位数字的录入
+	public int[] ints() {
+		//Path path=Paths.get("").;
+		return null;
+	}
 
+	// 计算给定整数的整除数个数
+	// 算法效率为O(n),效率极低，有待改进
+	public static int findDivisors(long num) {
+
+		if (num == 1)
+			return 1;
+		if (num < 4)
+			return 2;// 2,3返回2
+		if (num == 4)
+			return 3;
+		int count = 1;
+		for (long i = 3; i <= num / 3; i++) {
+			if (num % i == 0)
+				count++;
+		}
+		if (num % 2 == 0)
+			count += 2;// 2和num/2也是整除数. 这里起初符号写错 +=写成的=+，导致到这一步count都是2
+		count++;// 本身也是
+		return count;
+	}
+
+	// 将用空格分割的字符串转成数组存储，并以逗号分割打印
 	public static void splitToArray(String s) {
 		String[] array = s.split(" ");
 		for (String st : array) {
-			System.out.print(st+",");
+			System.out.print(st + ",");
 		}
 	}
 

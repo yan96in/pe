@@ -12,7 +12,16 @@ import org.junit.Test;
  *
  */
 public class UtilTest {
-
+@Test 
+public void findDivisorsTest(){
+	assertEquals(1,Util.findDivisors(1));
+	assertEquals(2,Util.findDivisors(3));
+	assertEquals(4,Util.findDivisors(6));
+	assertEquals(4,Util.findDivisors(10));
+	assertEquals(4,Util.findDivisors(15));
+	assertEquals(6,Util.findDivisors(28));
+	
+}
 	@Test
 	public void isFactorTest() {
 		assertFalse(Util.isFactor(4));
