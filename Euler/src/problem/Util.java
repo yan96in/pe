@@ -4,6 +4,7 @@
 package problem;
 
 import java.io.File;
+import java.math.BigInteger;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -17,7 +18,15 @@ public class Util {
 		//Path path=Paths.get("").;
 		return null;
 	}
-
+//计算阶乘
+	public static BigInteger factorial(long num){
+		BigInteger factor=new BigInteger("1");
+		for(long i=1;i<num+1;i++){
+			factor.multiply(new BigInteger(String.valueOf(i)));
+		}
+		System.out.println(factor);
+		return factor;
+	}
 	// 计算给定整数的整除数个数
 	// 算法效率为O(n),效率极低，有待改进
 	public static int findDivisors(long num) {

@@ -15,10 +15,21 @@ public class P1 {
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();// System.nanoTime();纳秒
 		System.out.println("program is running...");
-		System.out.println(p14());
+		System.out.println(p20());
 
 		long endTime = System.currentTimeMillis();// System.nanoTime();
 		System.out.println("运行程序用了" + (endTime - startTime) + "微秒");
+	}
+
+	// Factorial digit sum
+	private static long p20() {
+		String s = Util.factorial(100).toString();
+		System.out.println(s);
+		int sum = 0;
+		for (int i = 0; i < s.length(); i++) {
+			sum += Integer.parseInt(String.valueOf(s.charAt(i)));
+		}
+		return sum;
 	}
 
 	private static int p16() {
@@ -37,21 +48,28 @@ public class P1 {
 
 	// Longest Collatz sequence
 	private static int p14() {
-		int tmp, maxCount = 0, count = 0;
-		for (int i = 3; i < 1_000_000-2; i = i + 2) {
+		int result = 1, tmp, // tmp为中间变量
+				count = 0, tmpCount;// tmpCount为中间变量
+		for (int i = 1000_00; i < 2_000_00; i = i + 1) {// 对于每个小于500000的数n，都有一个2n比其链长长1，所以不考虑
+			if ((i - 1) % 3 == 0 | (i - 1) / 3 % 2 != 0)// 对于每个i=3n+1（n为奇数）都有一个n比其链长长1，所以不考虑
+				continue;
 			tmp = i;
+			tmpCount = 0;
 			while (tmp != 1) {
 				if (tmp % 2 == 0) {
 					tmp = tmp / 2;
-					count++;
+					tmpCount++;
 				} else {
 					tmp = tmp * 3 + 1;
-					count++;
+					tmpCount++;
 				}
 			}
-			maxCount = maxCount > count ? maxCount : count;
+			if (tmpCount > count) {
+				count = tmpCount;
+				result = i;
+			}
 		}
-		return maxCount+1;
+		return result;
 	}
 
 	/*
