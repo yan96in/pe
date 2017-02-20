@@ -12,6 +12,14 @@ import org.junit.Test;
  *
  */
 public class UtilTest {
+	@Test 
+	public void sumOfDivisors(){
+		assertEquals(1,Util.sumOfDivisors(1));
+		assertEquals(1,Util.sumOfDivisors(2));
+		assertEquals(3,Util.sumOfDivisors(4));
+		assertEquals(6,Util.sumOfDivisors(6));
+		assertEquals(8,Util.sumOfDivisors(10));
+	}
 @Test 
 public void findDivisorsTest(){
 	assertEquals(1,Util.findDivisors(1));

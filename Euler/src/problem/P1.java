@@ -15,16 +15,25 @@ public class P1 {
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();// System.nanoTime();纳秒
 		System.out.println("program is running...");
-		System.out.println(p20());
+		System.out.println(p21());
 
 		long endTime = System.currentTimeMillis();// System.nanoTime();
 		System.out.println("运行程序用了" + (endTime - startTime) + "微秒");
 	}
 
+	// Amicable numbers
+	private static long p21() {
+		long sum = 0;
+		for (int i = 1; i < 10000; i++) {
+			if (i == Util.sumOfDivisors(Util.sumOfDivisors(i)) && i != Util.sumOfDivisors(i))
+				sum += i;
+		}
+		return sum;
+	}
+
 	// Factorial digit sum
 	private static long p20() {
-		String s = Util.factorial(100).toString();
-		System.out.println(s);
+		String s = Util.factorial(10).toString();
 		int sum = 0;
 		for (int i = 0; i < s.length(); i++) {
 			sum += Integer.parseInt(String.valueOf(s.charAt(i)));

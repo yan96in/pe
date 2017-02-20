@@ -21,14 +21,25 @@ public class Util {
 //计算阶乘
 	public static BigInteger factorial(long num){
 		BigInteger factor=new BigInteger("1");
+		BigInteger bi;
 		for(long i=1;i<num+1;i++){
-			factor.multiply(new BigInteger(String.valueOf(i)));
+			bi=BigInteger.valueOf(i);
+			factor.multiply(bi);
+			System.out.println(factor);
 		}
-		System.out.println(factor);
 		return factor;
 	}
-	// 计算给定整数的整除数个数
-	// 算法效率为O(n),效率极低，有待改进
+	
+	//计算整除数之和
+	public static int sumOfDivisors(int num){
+		int sum=1;
+		for(int i=2;i<num;i++){
+			if(num%i==0)sum+=i;
+		}
+		return sum;
+	}
+	// 计算给定整数的除数个数
+	// 算法效率为O(n^2),效率极低，有待改进
 	public static int findDivisors(long num) {
 
 		if (num == 1)
@@ -43,7 +54,7 @@ public class Util {
 				count++;
 		}
 		if (num % 2 == 0)
-			count += 2;// 2和num/2也是整除数. 这里起初符号写错 +=写成的=+，导致到这一步count都是2
+			count += 2;// 2和num/2也是整除数. 
 		count++;// 本身也是
 		return count;
 	}
