@@ -15,29 +15,41 @@ import java.nio.file.Paths;
 public class Util {
 	// 读取文件，用于大位数字的录入
 	public int[] ints() {
-		//Path path=Paths.get("").;
+		// Path path=Paths.get("").;
 		return null;
 	}
-//计算阶乘
-	public static BigInteger factorial(long num){
-		BigInteger factor=new BigInteger("1");
-		BigInteger bi;
-		for(long i=1;i<num+1;i++){
-			bi=BigInteger.valueOf(i);
-			factor.multiply(bi);
-			System.out.println(factor);
-		}
-		return factor;
-	}
-	
-	//计算整除数之和
-	public static int sumOfDivisors(int num){
-		int sum=1;
-		for(int i=2;i<num;i++){
-			if(num%i==0)sum+=i;
+
+	// 计算自幂数之和
+	public static BigInteger sumOfSelfPowers(long num) {
+		BigInteger sum = BigInteger.valueOf(0);
+		BigInteger tmp;
+		for (long i = 1; i < num + 1; i++) {
+			sum=sum.add(BigInteger.valueOf(i).pow((int) i));//必须写上赋值符sum=接收对象，不然sum值不会变
 		}
 		return sum;
 	}
+
+	// 计算阶乘
+	public static BigInteger factorial(long num) {
+		BigInteger factor = new BigInteger("1");
+		BigInteger bi;
+		for (long i = 1; i < num + 1; i++) {
+			bi = BigInteger.valueOf(i);
+			factor=factor.multiply(bi);
+		}
+		return factor;
+	}
+
+	// 计算整除数之和
+	public static int sumOfDivisors(int num) {
+		int sum = 1;
+		for (int i = 2; i < num; i++) {
+			if (num % i == 0)
+				sum += i;
+		}
+		return sum;
+	}
+
 	// 计算给定整数的除数个数
 	// 算法效率为O(n^2),效率极低，有待改进
 	public static int findDivisors(long num) {
@@ -54,7 +66,7 @@ public class Util {
 				count++;
 		}
 		if (num % 2 == 0)
-			count += 2;// 2和num/2也是整除数. 
+			count += 2;// 2和num/2也是整除数.
 		count++;// 本身也是
 		return count;
 	}

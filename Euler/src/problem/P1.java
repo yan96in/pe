@@ -15,10 +15,22 @@ public class P1 {
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();// System.nanoTime();纳秒
 		System.out.println("program is running...");
-		System.out.println(p21());
+		System.out.println(p20());
 
 		long endTime = System.currentTimeMillis();// System.nanoTime();
 		System.out.println("运行程序用了" + (endTime - startTime) + "微秒");
+	}
+
+	// Self powers
+	private static BigInteger p48() {
+		BigInteger bi = Util.sumOfSelfPowers(1000);
+		BigInteger sum = BigInteger.ZERO;
+		sum.add(bi.mod(BigInteger.TEN));
+		for (int i = 0; i < 10; i++) {
+			bi=bi.divide(BigInteger.TEN);
+			sum=sum.add(bi.mod(BigInteger.TEN));
+		}
+		return sum;
 	}
 
 	// Amicable numbers
@@ -33,7 +45,7 @@ public class P1 {
 
 	// Factorial digit sum
 	private static long p20() {
-		String s = Util.factorial(10).toString();
+		String s = Util.factorial(100).toString();
 		int sum = 0;
 		for (int i = 0; i < s.length(); i++) {
 			sum += Integer.parseInt(String.valueOf(s.charAt(i)));
